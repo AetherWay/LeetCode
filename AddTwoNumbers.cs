@@ -52,16 +52,20 @@ public class Solution {
         return number;
     }
 
-    private void GenerateResult(int resultNum)
+    private ListNode GenerateResult(int resultNum, ListNode ln = null)
     {
         if (resultNum < 1)
         var resultDigit = resultNum % 10;
         resultNum /= 10;        
         var resultNode = new ListNode(resultDigit);
-        if (resultDigit == 0)
+        if (resultNum == 0)
             return resultNode;
             
-        
+        if (ln != null)
+        {
+            ln.next = resultNode;
+            GenerateResult(resultNum, resultNode);
+        }            
     }
 }
 
